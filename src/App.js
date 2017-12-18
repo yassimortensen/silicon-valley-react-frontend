@@ -16,6 +16,10 @@ class App extends Component {
   }
 
   componentDidMount(){
+    this.getCharacters()
+  }
+
+  getCharacters(){
     fetch ('http://localhost:3000/characters')
       .then(res => res.json())
       .then(res => this.setState({characterList: res}))
@@ -31,7 +35,7 @@ class App extends Component {
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(() => this.componentDidMount())
+    .then(() => this.getCharacters())
   }
 
   handleDelete = (id) => {
@@ -43,7 +47,7 @@ class App extends Component {
       }
     })
     .then(res => res.json())
-    .then(() => this.componentDidMount())
+    .then(() => this.getCharacters())
   }
 
   createCharacter = (data) => {
@@ -56,7 +60,7 @@ class App extends Component {
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(() => this.componentDidMount())
+    .then(() => this.getCharacters())
   }
 
   render() {
